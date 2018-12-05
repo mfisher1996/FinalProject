@@ -20,10 +20,8 @@ class myStack
         void pop();
         Type top() const;
         ~myStack();
-
+		void copyStack(const myStack<Type>& otherStack);
     private:
-
-        void copyStack(const myStack<Type>& otherStack);
 
         int maxStackSize;
         int stackTop;

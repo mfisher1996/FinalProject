@@ -16,15 +16,20 @@
 #include "stackType.h"
 #include <ctime>
 
+
+
 class Truck{
 private:
     unorderedLinkedList<arrayListType<string>> list;
     queueType<char> commands;
+    int stackSize = 3;
     myStack<char> responses;
     Validation check;
     bool eyes;
+    char command;
     string speech;
     string action;
+    
     
 public:
     /**
@@ -45,12 +50,15 @@ public:
             list.insertLast(temp);
         }
         srand(time(NULL));
+        myStack<char> stak(3);
+        responses.copyStack(stak);
     };
     /**
      Destructor for truck.
      */
     ~Truck(){};
     /**
+     * print()
      outputs the member values of the Truck object
      */
     void print();
@@ -94,11 +102,60 @@ public:
      Uses the contents of commands to set the members of Truck.
      */
     void setCommand();
-    
+    /**
+     setAction()
+     Uses the value held in command to set an action for that command. 
+     */
+    void setAction();
+	/**
+	 * isDoneWaiting()
+	 * if responses stack is full returns true, otherwise returns true.
+	 * */
+	 bool isDoneWaiting(){return responses.isFullStack();};
+	
 };
 
+void Truck :: print(){
+	cout << action << endl;
+	if(eyes)
+		cout << "Chuck looks around.\n"; 
+	else
+		cout << "Chuck does not look around.\n";
+	cout << "Chuck says: " << speech << endl;
+}
+
+void Truck :: setAction(){
+	switch(toupper(command)){
+		case 'B' : //button press
+			action = "Chuck drives forward";
+			eyes = false;
+			speech = getPress();
+			responses.initializeStack();
+			break;
+		case 'P' : //push Chuck
+			action = "Chuck rushes forward";
+			eyes = false;
+			speech = getPush();
+			responses.initializeStack();
+			break;
+		case 'T' : //tickle Chuck
+			action = "Chuck laughes";
+			eyes = true;
+			speech = getTickle();
+			responses.initializeStack();
+			break;
+		case 'N' : //do nothing
+			action = "Chuck wonders where you went";
+			eyes = true;
+			speech = getWait();
+			responses.push('w');
+			break;
+    }
+            
+}
+
 void Truck :: setCommand(){
-    char temp = commands.front();
+    command = commands.front();
     commands.deleteQueue();
     
 }

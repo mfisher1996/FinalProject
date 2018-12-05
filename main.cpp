@@ -12,6 +12,11 @@
 int main() {
     Truck truckObj;
     truckObj.start();
-    truckObj.getCommand();
+    while(!truckObj.isDoneWaiting()){
+		truckObj.getCommand();
+		truckObj.setCommand();
+		truckObj.setAction();
+		truckObj.print();
+    }
     return 0;
 }
