@@ -1,0 +1,6 @@
+It's time to play with Chuck the Tumble Truck! You can do 4 different things in this simulation:
+	1) Type 'B' to press Chuck's button.
+	2) Type 'P' to push Chuck forward.
+	3) Type 'T' to tickle Chuck.
+	4) Type 'N' to leave Chuck where he is and do nothing.
+Chuck wil respond depending on what you choose. 
